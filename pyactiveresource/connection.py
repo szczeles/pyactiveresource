@@ -318,7 +318,7 @@ class Connection(object):
         else:
           return urllib.request.urlopen(request)
 
-    @backoff.on_exception(backoff.expo, (ServerError, http_client.IncompleteRead))
+    @backoff.on_exception(backoff.expo, (ServerError, http_client.IncompleteRead, Exception))
     def get(self, path, headers=None):
         """Perform an HTTP get request.
 
